@@ -1,0 +1,200 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<!-- Features Section -->
+<section class="page-section" id="select">
+    <div class="container relative">
+
+        <!-- <h2 class="section-title font-alt mb-70 mb-sm-40">
+          <a href="/api" style="text-decoration:none"> Available API's </a>
+        </h2> -->
+
+        <!-- Features Grid -->
+        <div class="row multi-columns-row alt-features-grid">
+
+            <!-- Features Item -->
+            <div class="col-sm-6 col-md-4 col-lg-4">
+                <div class="alt-features-item align-center">
+                    <div class="alt-features-icon">
+                        <span class="icon-flag"></span>
+                    </div>
+                    <a href="/api/rates/2016-01-01/2016-01-02/CNGGZ/EETLL/" style="text-decoration:none">
+                      <h3 class="alt-features-title font-alt">CHOOSE SEASON</h3>
+                    </a>
+
+                    <!-- <div class="alt-features-descr align-left">
+                      Choose a season to get the statistics of IPL
+                    </div> -->
+
+                    <div class="search_categories">
+                      <div class="select">
+                         <select name="season" id="season">
+                              <option value="default" selected="selected">select</option>
+                            {% for season in seasons %}
+                              <option value="{{ season }}" >{{season}}</option>
+                            {% endfor %}
+                          </select>
+                       </div>
+                   </div>
+                </div>
+            </div>
+            <!-- End Features Item -->
+
+            <!-- Features Item -->
+            <div class="col-sm-6 col-md-4 col-lg-4">
+                <div class="alt-features-item align-center">
+                    <div class="alt-features-icon">
+                        <span class="icon-clock"></span>
+                    </div>
+                    <a href="/api/rates_null/2016-01-01/2016-01-02/CNGGZ/EETLL/" style="text-decoration:none">
+                      <h3 class="alt-features-title font-alt">RATES NULL API</h3>
+                    </a>
+                    <div class="alt-features-descr align-left">
+                        API endpoint that returns a list with the average prices
+                        for each day on a route between Port Codes origin and destination,
+                        except null values for days on which there are less than 3 prices in total.
+                    </div>
+                </div>
+            </div>
+            <!-- End Features Item -->
+
+            <!-- Features Item -->
+            <div class="col-sm-6 col-md-4 col-lg-4">
+                <div class="alt-features-item align-center">
+                    <div class="alt-features-icon">
+                        <span class="icon-hotairballoon"></span>
+                    </div>
+                    <a href="/api/upload_price" style="text-decoration:none">
+                      <h3 class="alt-features-title font-alt">UPLOAD PRICES API</h3>
+                    </a>
+                    <div class="alt-features-descr align-left">
+                        API endpoint where you can upload a price,
+                        including the following parameters:
+                        date_from, date_to, origin_code, destination_code, price
+                    </div>
+                </div>
+            </div>
+            <!-- End Features Item -->
+
+            <!-- Features Item -->
+            <div class="col-sm-6 col-md-4 col-lg-4">
+                <div class="alt-features-item align-center">
+                    <div class="alt-features-icon">
+                        <span class="icon-heart"></span>
+                    </div>
+                    <h3 class="alt-features-title font-alt"></h3>
+                    <a href="/api/upload_usd_price" style="text-decoration:none">
+                      <h3 class="alt-features-title font-alt">UPLOAD USD PRICES API</h3>
+                    </a>
+                    <div class="alt-features-descr align-left">
+                      API endpoint where you can upload a price,
+                      including the following parameters:
+                      date_from, date_to, origin_code, destination_code, price.
+                      Accept prices in different currencies and convert into USD before saving
+                    </div>
+                </div>
+            </div>
+            <!-- End Features Item -->
+
+            <!-- Features Item -->
+            <div class="col-sm-6 col-md-4 col-lg-4">
+                <div class="alt-features-item align-center">
+                    <div class="alt-features-icon">
+                        <span class="icon-linegraph"></span>
+                    </div>
+                    <a href="/api/rates_sql/2016-01-01/2016-01-02/CNGGZ/EETLL/" style="text-decoration:none">
+                      <h3 class="alt-features-title font-alt">RATES SQL API</h3>
+                    </a>
+                    <div class="alt-features-descr align-left">
+                        API endpoint that returns a list with the average
+                        prices for each day on a route between Port Codes origin and destination,
+                        using raw SQL instead of using ORM querying tool.
+                    </div>
+                </div>
+            </div>
+            <!-- End Features Item -->
+
+            <!-- Features Item -->
+            <div class="col-sm-6 col-md-4 col-lg-4">
+                <div class="alt-features-item align-center">
+                    <div class="alt-features-icon">
+                        <span class="icon-chat"></span>
+                    </div>
+                    <a href="/api/schema" style="text-decoration:none">
+                      <h3 class="alt-features-title font-alt">API SCHEMA</h3>
+                    </a>
+                    <div class="alt-features-descr align-left">
+                        API endpoint that describes about the schema of the all the API's.
+                    </div>
+                </div>
+            </div>
+            <!-- End Features Item -->
+
+        </div>
+        <!-- End Features Grid -->
+
+    </div>
+</section>
+<!-- End Features Section -->
+
+
+<!-- jquery script url -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<!-- javascript -->
+<script type="text/javascript">
+
+  $('#season').change(function() {
+    var id = $('#season').val();
+    alert(id);
+    console.log(id);
+  });
+
+
+  // get the input text field
+  var input = document.getElementById('input');
+  // on each value enter do the following inside the function
+  input.addEventListener('keyup',function(){
+
+    // ajax start
+    $.ajax({
+           // post url
+            url:"api/search/" + input.value,
+            // method: GET
+            type: 'GET',
+            // form data
+            dataType: "json",
+            // ajax success response
+            success: function(response_data) {
+              // if calculation success
+              if(response_data[0].status=='success')
+              {
+
+                // for each in the respoonse data
+                $.each(response_data[0].data.suggession_list, function (i, data) {
+                    // remove if exists in the option list
+                    $('#browsers option[value='+ data +']').remove();
+                    // create a option with the data
+                    var div_data = "<option value=" + data + ">" ;
+                    // append to options list
+                    $(div_data).appendTo('#browsers');
+                });
+
+                // display the time taken
+               document.getElementById("time").innerHTML = response_data[0].data.time;
+               // display the time taken message
+               document.getElementById("time_message").innerHTML = "is the time taken";
+
+              }
+              // if calculation is failed
+              else if (response_data[0].status=='failed')
+              {
+                // log the failure message
+                console.log("response failed");
+              }
+            }
+    }); // end of $.ajax
+  });
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html style="background-color: white; transition: background-color 0.15s ease 0s;" class="no-mobile no-touch ss-shaded-scrollbars"><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>IPL</title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="author" content="">
+        <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+        <!-- Favicons -->
+        <link rel="shortcut icon" href="">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="{% static '/static_files/bootstrap.min.css'%}">
+        <link rel="stylesheet" href="{% static '/static_files/style.css'%}">
+        <link rel="stylesheet" href="{% static '/static_files/style-responsive.css'%}">
+        <link rel="stylesheet" href="{% static '/static_files/animate.min.css'%}">
+        <link rel="stylesheet" href="{% static '/static_files/vertical-rhythm.min.css'%}">
+        <link rel="stylesheet" href="{% static '/static_files/owl.carousel.css'%}">
+        <link rel="stylesheet" href="{% static '/static_files/magnific-popup.css'%}">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style id="fit-vids-style">
+    .fluid-width-video-wrapper{width:100%;position:relative;padding:0;}
+    .fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,
+    .fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}
+
+    .search_categories{
+      font-size: 13px;
+      padding: 10px 8px 10px 0px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+      width: 70%;
+      margin-left: 50px;       /* This is when the drop down box appears */
+
+    }
+
+    .search_categories .select{
+      width: 100%;
+      background:url('arrow.png') no-repeat;
+      background-position:80% center;
+    }
+
+    .search_categories .select select{
+      background: transparent;
+      line-height: 1;
+      border: 0;
+      outline:0;
+      padding: 0;
+      border-radius: 0;
+      width: 65%;
+      position: relative;
+      z-index: 50;
+      font-size: 1em;
+    }
+
+    </style>
+
+  </head>
+    <body class="appear-animate js-focus-visible">
+
+        <!-- Page Loader -->
+        <div class="page-loader" style="display: none;">
+            <div class="loader" style="display: none;">Loading...</div>
+        </div>
+        <!-- End Page Loader -->
+
+        <!-- Page Wrap -->
+        <div class="page" id="top">
+
+            <!-- Home Section -->
+            <section class="home-section bg-dark-alfa-30 parallax-2" data-background="{% static '/images/full-width-images/black_wallpaper_1.jpg'%}" id="home" style="background-image: url(&quot;static/images/full-width-images/section-bg-1.jpg&quot;); background-position: 50% 0px;">
+                <div class="js-height-full container" style="height: 900px;">
+
+                    <!-- Hero Content -->
+                    <div class="home-content">
+                        <div class="home-text">
+
+                            <h1 class="hs-line-1 font-alt mb-80 mb-xs-30 mt-50 mt-sm-0">
+                                INDIAN PREMIER LEAGUE
+                            </h1>
+
+                            <a href="#select" style="scroll-behavior:smooth; text-decoration:none; font-size:16px;">
+                              <button type="button" class="block" style="width:30%; border:none; background-color:#01801b; padding:14px 28px; text-align:center; margin:0 auto;">
+                                  SEASON STATISTICS
+                              </button>
+                            </a>
+
+                        </div>
+                    </div>
+                    <!-- End Hero Content -->
+
+                    <!-- Scroll Down -->
+                    <div class="local-scroll">
+                        <a href="#select" class="scroll-down"><i class="fa fa-angle-down scroll-down-icon"></i></a>
+                    </div>
+                    <!-- End Scroll Down -->
+
+                </div>
+            </section>
+            <!-- End Home Section -->
+
+            <!-- Navigation panel -->
+            <nav class="main-nav dark stick-fixed js-transparent transparent">
+                <div class="full-wrapper relative clearfix">
+
+                    <!-- Logo ( * your text or image into link tag *) -->
+                    <div class="nav-logo-wrap local-scroll">
+                        <a href="#" class="logo">
+                            <img src="{% static '/static_files/rate_api_logo.png'%} " alt="">
+                        </a>
+                    </div>
+
+                    <div class="mobile-nav" style="height: 75px; line-height: 75px; width: 75px;">
+                        <i class="fa fa-bars"></i>
+                    </div>
+
+                    <!-- Main Menu -->
+                    <div class="inner-nav desktop-nav">
+                        <ul class="clearlist">
+
+                            <!-- Item With Sub -->
+                            <li>
+                                <a href="#" class="mn-has-sub active" style="height: 75px; line-height: 75px;">Home <i class="fa fa-angle-down"></i></a>
+                            </li>
+                            <!-- End Item With Sub -->
+
+                            <!-- Item With Sub -->
+                            <li>
+                                <a href="#" class="mn-has-sub" style="height: 75px; line-height: 75px;">Pages <i class="fa fa-angle-down"></i></a>
+                            </li>
+                            <!-- End Item With Sub -->
+
+                            <!-- Item With Sub -->
+                            <li>
+                                <a href="#" class="mn-has-sub" style="height: 75px; line-height: 75px;">Elements <i class="fa fa-angle-down"></i></a>
+                            </li>
+                            <!-- End Item With Sub -->
+
+                            <!-- Item With Sub -->
+                            <li>
+                                <a href="#" class="mn-has-sub" style="height: 75px; line-height: 75px;">Portfolio <i class="fa fa-angle-down"></i></a>
+                            </li>
+                            <!-- End Item With Sub -->
+
+                            <!-- Search -->
+                            <li>
+                                <a href="#" class="mn-has-sub" style="height: 75px; line-height: 75px;"><i class="fa fa-search"></i> Search</a>
+                            </li>
+                            <!-- End Search -->
+
+                            <!-- Item With Sub -->
+                            <li>
+                                <a href="#" class="mn-has-sub" style="height: 75px; line-height: 75px;">Blog <i class="fa fa-angle-down"></i></a>
+                            </li>
+                            <!-- End Item With Sub -->
+
+                            <!-- Languages -->
+                            <li>
+                                <a href="#" class="mn-has-sub" style="height: 75px; line-height: 75px;">Eng <i class="fa fa-angle-down"></i></a>
+
+                                <ul class="mn-sub">
+                                    <li><a href="">English</a></li>
+                                    <li><a href="">Norway</a></li>
+                                    <li><a href="">France</a></li>
+                                </ul>
+
+                            </li>
+                            <!-- End Languages -->
+
+                        </ul>
+                    </div>
+                    <!-- End Main Menu -->
+
+                </div>
+            </nav>
+            <!-- End Navigation panel -->
+
+            <!-- Divider -->
+            <hr class="mt-0 mb-0 ">
+            <!-- End Divider -->
+
+            <!-- Divider -->
+            <hr class="mt-0 mb-0">
+            <!-- End Divider -->
+
+      {% block body %}
+      <!-- main html -->
+      {% endblock %}
+      <!-- Divider -->
+      <hr class="mt-0 mb-0 ">
+      <!-- End Divider -->
+
+
+      <!-- Divider -->
+      <hr class="mt-0 mb-0 ">
+      <!-- End Divider -->
+
+
+      <!-- Call Action Section -->
+      <section class="small-section bg-dark">
+          <div class="container relative">
+
+              <div class="align-center">
+
+                <div class="footer-copy font-alt">
+                    <a href="https://www.linkedin.com/in/shintojoseph1234/" target="_blank" style="text-decoration:none" >© IPL 2019</a>.
+                </div>
+                <!-- End Copyright -->
+
+                <div class="footer-made">
+                    Created by Shinto Joseph.
+                </div>
+
+              </div>
+
+          </div>
+      </section>
+      <!-- End Call Action Section -->
+
+
+  </div>
+  <!-- End Page Wrap -->
+
+
+  <!-- JS -->
+  <script type="text/javascript" src="{% static '/static_files/jquery-1.11.2.min.js'%}"></script>
+  <script type="text/javascript" src="{% static '/static_files/SmoothScroll.js'%}"></script>
+  <script type="text/javascript" src="{% static '/static_files/jquery.easing.1.3.js'%}"></script>
+  <script type="text/javascript" src="{% static '/static_files/bootstrap.min.js'%}"></script>
+  <script type="text/javascript" src="{% static '/static_files/jquery.scrollTo.min.js'%}"></script>
+  <script type="text/javascript" src="{% static '/static_files/jquery.localScroll.min.js'%}"></script>
+  <script type="text/javascript" src="{% static '/static_files/jquery.viewport.mini.js'%}"></script>
+  <script type="text/javascript" src="{% static '/static_files/jquery.countTo.js'%}"></script>
+  <script type="text/javascript" src="{% static '/static_files/jquery.appear.js'%}"></script>
+  <script type="text/javascript" src="{% static '/static_files/jquery.sticky.js'%}"></script>
+  <script type="text/javascript" src="{% static '/static_files/jquery.parallax-1.1.3.js'%}"></script>
+  <script type="text/javascript" src="{% static '/static_files/owl.carousel.min.js'%}"></script>
+  <script type="text/javascript" src="{% static '/static_files/isotope.pkgd.min.js'%}"></script>
+  <script type="text/javascript" src="{% static '/static_files/imagesloaded.pkgd.min.js'%}"></script>
+  <script type="text/javascript" src="{% static '/static_files/jquery.magnific-popup.min.js'%}"></script>
+  <script type="text/javascript" src="{% static '/static_files/wow.min.js'%}"></script>
+  <script type="text/javascript" src="{% static '/static_files/masonry.pkgd.min.js'%}"></script>
+  <script type="text/javascript" src="{% static '/static_files/jquery.simple-text-rotator.min.js'%}"></script>
+  <script type="text/javascript" src="{% static '/static_files/all.js'%}"></script>
+  <script type="text/javascript" src="{% static '/static_files/contact-form.js'%}"></script>
+  <script type="text/javascript" src="{% static '/static_files/jquery.ajaxchimp.min.js'%}"></script>
+
+  <!--[if lt IE 10]><script type="text/javascript" src="js/placeholder.js"></script><![endif]-->
