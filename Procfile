@@ -1,1 +1,1 @@
-web: gunicorn autocomplete.wsgi --log-file -
+web: gunicorn ipl_season_stats.wsgi --log-file -
