@@ -8,6 +8,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 
+# local imports
 from api.models import Matches
 from api.plots import bar_graph_data_cleaner, pie_graph_data_cleaner, bar_graph, pie_graph
 
@@ -142,9 +143,8 @@ def season_stats(request, season):
                                                ).annotate(city_count=Count('id')
                                                ).order_by('city_count'
                                                ).reverse()[:1]
-
+    # combine location names
     location_dict = {b+"-"+a:c for a,b,c in location_queryset}
-    print (location_dict)
 
     # list of toss winners
     toss_winner_list = list(dict(toss_winner_queryset).keys())
@@ -164,8 +164,9 @@ def season_stats(request, season):
     bat_percentage = (toss_dict['bat']/total)*100
     # input to pie graph
     pie_graph_data = {"BAT":round(bat_percentage,2), "FIELD":round(100-bat_percentage,2)}
-
+    # pie data inputs
     labels,values,colors = pie_graph_data_cleaner(pie_graph_data)
+    # pie data plotted as html div
     pie_div = pie_graph(labels,values,colors)
 
     # Team with max number of runs
@@ -180,31 +181,21 @@ def season_stats(request, season):
                                                ).annotate(city_count=Count('id')
                                                ).order_by('city_count'
                                                )
-                                            #    .reverse()[:1]
-
-    print (location_most_queryset)
-
 
 
     # response message
     success = [{
             	"status": "success",
             	"data": {
-            		"ingestion": 'ingestion_status',
-                    "message"  : "message",
-
-                    "top_4_winner" : winner_dict,
+                    "top_4_winner"          : winner_dict,
+                    "max_toss__win_team"    : toss_winner_dict,
+                    "max_player_of_match"   : player_of_match_dict,
+                    "max_winner_team"       : winner_team,
+                    "top_runs_team"         :top_runs_dict,
+                    "max_win_location"      :location_dict,
                     "top_4_winner_bar_div"  : winner_bar_div,
+                    "pie_div"               :pie_div,
 
-                    "max_toss__win_team" : toss_winner_dict,
-                    "max_player_of_match" : player_of_match_dict,
-
-                    "max_winner_team": winner_team,
-
-                    "top_runs_team":top_runs_dict,
-                    "max_win_location":location_dict,
-
-                    "pie_div":pie_div,
 
             	},
             }]
