@@ -1,5 +1,6 @@
 # django imports
 from django.shortcuts import render
+from django.db.models import Count
 
 # REST imports
 from rest_framework.generics import GenericAPIView
@@ -8,6 +9,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from api.models import Matches
+from api.plots import bar_graph_data_cleaner, pie_graph_data_cleaner, bar_graph, pie_graph
 
 # other imports
 import pandas as pd
@@ -92,8 +94,7 @@ def season_stats(request, season):
         list: returns
     '''
 
-    from django.db.models import Count, Max
-
+    # convert into integer
     season = int(season)
 
     # top 4 winner teams
@@ -102,9 +103,15 @@ def season_stats(request, season):
                                         ).annotate(winner_count=Count('id')
                                         ).order_by('winner_count'
                                         ).reverse()[:4]
-
+    # convert quertset to dict
     winner_dict = dict(winnner_queryset)
-    print (winner_dict)
+    # clean the data to plot bar graph
+    x,y,colors = bar_graph_data_cleaner(winner_dict)
+    # heading
+    heading = ''
+    # plotted html div of bar graph
+    winner_bar_div = bar_graph(x,y,heading,colors)
+
 
     # Team with max number of tosses
     toss_winner_queryset = Matches.objects.filter(season=season
@@ -113,8 +120,8 @@ def season_stats(request, season):
                                             ).order_by('toss_winner_count'
                                             ).reverse()
 
+    # convert quertset to dict
     toss_winner_dict = dict(toss_winner_queryset[:1])
-    print (toss_winner_dict)
 
     # which player won max player of match
     player_of_match_queryset = Matches.objects.filter(season=season
@@ -124,11 +131,9 @@ def season_stats(request, season):
                                         ).reverse()[:1]
 
     player_of_match_dict = dict(player_of_match_queryset)
-    print (player_of_match_dict)
 
     # team won max matches in the whole season
     winner_team = max(winner_dict, key=winner_dict.get)
-    print (winner_team)
 
     # location having most number of wins for top team
     location_queryset = Matches.objects.filter(season=season,
@@ -157,15 +162,17 @@ def season_stats(request, season):
     total = sum(toss_dict.values())
     # find the bat percentage
     bat_percentage = (toss_dict['bat']/total)*100
-    print (bat_percentage)
+    # input to pie graph
+    pie_graph_data = {"BAT":round(bat_percentage,2), "FIELD":round(100-bat_percentage,2)}
 
-    #
+    labels,values,colors = pie_graph_data_cleaner(pie_graph_data)
+    pie_div = pie_graph(labels,values,colors)
+
     # Team with max number of runs
     top_runs_queryset = Matches.objects.filter(season=season
                                             ).values_list('winner','win_by_runs'
                                             ).order_by('-win_by_runs')[:1]
     top_runs_dict = dict(top_runs_queryset)
-    print (top_runs_dict)
 
     # location having most number of matches
     location_most_queryset = Matches.objects.filter(season=season,
@@ -177,12 +184,28 @@ def season_stats(request, season):
 
     print (location_most_queryset)
 
+
+
     # response message
     success = [{
             	"status": "success",
             	"data": {
             		"ingestion": 'ingestion_status',
-                    "message"  : "message"
+                    "message"  : "message",
+
+                    "top_4_winner" : winner_dict,
+                    "top_4_winner_bar_div"  : winner_bar_div,
+
+                    "max_toss__win_team" : toss_winner_dict,
+                    "max_player_of_match" : player_of_match_dict,
+
+                    "max_winner_team": winner_team,
+
+                    "top_runs_team":top_runs_dict,
+                    "max_win_location":location_dict,
+
+                    "pie_div":pie_div,
+
             	},
             }]
 
