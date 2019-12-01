@@ -18,13 +18,7 @@
                     <div class="alt-features-icon">
                         <span class="icon-flag"></span>
                     </div>
-                    <a href="/api/rates/2016-01-01/2016-01-02/CNGGZ/EETLL/" style="text-decoration:none">
                       <h3 class="alt-features-title font-alt">CHOOSE SEASON</h3>
-                    </a>
-
-                    <!-- <div class="alt-features-descr align-left">
-                      Choose a season to get the statistics of IPL
-                    </div> -->
 
                     <div class="search_categories">
                       <div class="select">
@@ -36,6 +30,14 @@
                           </select>
                        </div>
                    </div>
+                   <br>
+
+                   <div class="alt-features-descr align-left">
+                       API endpoint that returns a list with the average prices
+                       for each day on a route between Port Codes origin and destination,
+                       except null values for days on which there are less than 3 prices in total.
+                   </div>
+
                 </div>
             </div>
             <!-- End Features Item -->
@@ -46,9 +48,10 @@
                     <div class="alt-features-icon">
                         <span class="icon-clock"></span>
                     </div>
-                    <a href="/api/rates_null/2016-01-01/2016-01-02/CNGGZ/EETLL/" style="text-decoration:none">
-                      <h3 class="alt-features-title font-alt">RATES NULL API</h3>
-                    </a>
+                      <h3 class="alt-features-title font-alt">MAX PLAYER OF MATCH</h3>
+
+                    <input type="text" id="ip1" placeholder="" />
+
                     <div class="alt-features-descr align-left">
                         API endpoint that returns a list with the average prices
                         for each day on a route between Port Codes origin and destination,
@@ -64,9 +67,10 @@
                     <div class="alt-features-icon">
                         <span class="icon-hotairballoon"></span>
                     </div>
-                    <a href="/api/upload_price" style="text-decoration:none">
-                      <h3 class="alt-features-title font-alt">UPLOAD PRICES API</h3>
-                    </a>
+                      <h3 class="alt-features-title font-alt">MAX TOSS WINNER TEAM</h3>
+
+                    <input type="text" id="ip2" placeholder="" />
+
                     <div class="alt-features-descr align-left">
                         API endpoint where you can upload a price,
                         including the following parameters:
@@ -80,18 +84,73 @@
             <div class="col-sm-6 col-md-4 col-lg-4">
                 <div class="alt-features-item align-center">
                     <div class="alt-features-icon">
+                        <span class="icon-clock"></span>
+                    </div>
+                      <h3 class="alt-features-title font-alt">MAX WINS LOCATION</h3>
+
+                    <input type="text" id="ip3" placeholder="" />
+
+                    <div class="alt-features-descr align-left">
+                        API endpoint that returns a list with the average prices
+                        for each day on a route between Port Codes origin and destination,
+                        except null values for days on which there are less than 3 prices in total.
+                    </div>
+                </div>
+            </div>
+            <!-- End Features Item -->
+
+            <!-- Features Item -->
+            <div class="col-sm-6 col-md-4 col-lg-4">
+                <div class="alt-features-item align-center">
+                    <div class="alt-features-icon">
+                        <span class="icon-clock"></span>
+                    </div>
+                      <h3 class="alt-features-title font-alt">TEAM WITH MAX RUNS</h3>
+
+                    <input type="text" id="ip4" placeholder="" />
+
+                    <div class="alt-features-descr align-left">
+                        API endpoint that returns a list with the average prices
+                        for each day on a route between Port Codes origin and destination,
+                        except null values for days on which there are less than 3 prices in total.
+                    </div>
+                </div>
+            </div>
+            <!-- End Features Item -->
+
+            <!-- Features Item -->
+            <div class="col-sm-6 col-md-4 col-lg-4">
+                <div class="alt-features-item align-center">
+                    <div class="alt-features-icon">
+                        <span class="icon-clock"></span>
+                    </div>
+                      <h3 class="alt-features-title font-alt">TEAM WITH MAX MATCH WINS</h3>
+
+                    <input type="text" id="ip5" placeholder="" />
+
+                    <div class="alt-features-descr align-left">
+                        API endpoint that returns a list with the average prices
+                        for each day on a route between Port Codes origin and destination,
+                        except null values for days on which there are less than 3 prices in total.
+                    </div>
+                </div>
+            </div>
+            <!-- End Features Item -->
+
+
+            <!-- Features Item -->
+            <div class="col-sm-6 col-md-4 col-lg-8">
+                <div class="alt-features-item align-center">
+                    <div class="alt-features-icon">
                         <span class="icon-heart"></span>
                     </div>
                     <h3 class="alt-features-title font-alt"></h3>
-                    <a href="/api/upload_usd_price" style="text-decoration:none">
-                      <h3 class="alt-features-title font-alt">UPLOAD USD PRICES API</h3>
-                    </a>
+                      <h3 class="alt-features-title font-alt">TOP 4 WINNER TEAMS</h3>
+
                     <div class="alt-features-descr align-left">
-                      API endpoint where you can upload a price,
-                      including the following parameters:
-                      date_from, date_to, origin_code, destination_code, price.
-                      Accept prices in different currencies and convert into USD before saving
+                      <div id="bar_graph" style="width:500; height:200px;">{{plot|safe}}</div>
                     </div>
+
                 </div>
             </div>
             <!-- End Features Item -->
@@ -102,63 +161,43 @@
                     <div class="alt-features-icon">
                         <span class="icon-linegraph"></span>
                     </div>
-                    <a href="/api/rates_sql/2016-01-01/2016-01-02/CNGGZ/EETLL/" style="text-decoration:none">
-                      <h3 class="alt-features-title font-alt">RATES SQL API</h3>
-                    </a>
+                      <h3 class="alt-features-title font-alt">TOSS DECISION</h3>
+
                     <div class="alt-features-descr align-left">
-                        API endpoint that returns a list with the average
-                        prices for each day on a route between Port Codes origin and destination,
-                        using raw SQL instead of using ORM querying tool.
+                      <div id="pie_graph" style="width:100px; height:100px;">{{plot|safe}}</div>
                     </div>
+
                 </div>
             </div>
             <!-- End Features Item -->
 
-            <!-- Features Item -->
-            <div class="col-sm-6 col-md-4 col-lg-4">
-                <div class="alt-features-item align-center">
-                    <div class="alt-features-icon">
-                        <span class="icon-chat"></span>
-                    </div>
-                    <a href="/api/schema" style="text-decoration:none">
-                      <h3 class="alt-features-title font-alt">API SCHEMA</h3>
-                    </a>
-                    <div class="alt-features-descr align-left">
-                        API endpoint that describes about the schema of the all the API's.
-                    </div>
-                </div>
-            </div>
-            <!-- End Features Item -->
+
 
         </div>
         <!-- End Features Grid -->
 
     </div>
 </section>
+
+
 <!-- End Features Section -->
 
 
 <!-- jquery script url -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 <!-- javascript -->
 <script type="text/javascript">
 
   $('#season').change(function() {
-    var id = $('#season').val();
-    alert(id);
-    console.log(id);
-  });
+    // get the input text field
+    var season = $('#season').val();
 
-
-  // get the input text field
-  var input = document.getElementById('input');
-  // on each value enter do the following inside the function
-  input.addEventListener('keyup',function(){
 
     // ajax start
     $.ajax({
            // post url
-            url:"api/search/" + input.value,
+            url:"api/search/" + season,
             // method: GET
             type: 'GET',
             // form data
@@ -168,21 +207,27 @@
               // if calculation success
               if(response_data[0].status=='success')
               {
+                var data = response_data[0].data;
 
-                // for each in the respoonse data
-                $.each(response_data[0].data.suggession_list, function (i, data) {
-                    // remove if exists in the option list
-                    $('#browsers option[value='+ data +']').remove();
-                    // create a option with the data
-                    var div_data = "<option value=" + data + ">" ;
-                    // append to options list
-                    $(div_data).appendTo('#browsers');
-                });
+                var winner_bar_div = data.top_4_winner_bar_div ;
+                var pie_div = data.pie_div;
 
-                // display the time taken
-               document.getElementById("time").innerHTML = response_data[0].data.time;
-               // display the time taken message
-               document.getElementById("time_message").innerHTML = "is the time taken";
+                var max_toss_win_team = Object.keys(data.max_toss__win_team)[0];
+                var max_player_of_match = Object.keys(data.max_player_of_match)[0];
+
+                var max_win_location = Object.keys(data.max_win_location)[0];
+                var top_runs_team = Object.keys(data.top_runs_team)[0];
+                var max_winner_team = data.max_winner_team;
+
+                $('#bar_graph').empty().append(winner_bar_div);
+                $('#pie_graph').empty().append(pie_div);
+
+                $("#ip1").attr("placeholder", max_player_of_match);
+                $("#ip2").attr("placeholder", max_toss_win_team);
+
+                $("#ip3").attr("placeholder", max_win_location);
+                $("#ip4").attr("placeholder", top_runs_team);
+                $("#ip5").attr("placeholder", max_winner_team);
 
               }
               // if calculation is failed
